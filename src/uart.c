@@ -94,6 +94,7 @@ int uart_init(struct uart_settings_t* us)
 {
     int fd = open(us->port, O_RDWR | O_NOCTTY | O_NONBLOCK);
     if (fd <0) {
+	fprintf(stderr, "Ooops\n");;
         return -EIO;
     }
     tcgetattr(fd,&oldtio); /* save current port settings */
