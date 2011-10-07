@@ -1,0 +1,5 @@
+This is a small and simple UART sniffer. 
+Connect RX lines of 2 serial ports to the devices talking and fire up the sniffer
+USAGE: usniffer tag:/dev/ttyUSB0:115200:8:n:1 
+
+License: GPLv3
