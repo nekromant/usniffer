@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
    
    if (c)
    {
-     //printf("Got event!\n");
+     printf("Got event!\n");
      process_event(&ev);
    }
  }
