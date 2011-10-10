@@ -57,6 +57,7 @@ int main(int argc, char* argv[])
    printf("Usage %s port1 port2 port3...\n");
    printf("Port statements must be in this form:\n");
    printf("tag:/dev/ttyUSB0:115200:8:n:1\n");
+   exit(0);
  }
  int i;
  struct uart_settings_t* us;
