@@ -48,18 +48,21 @@ void process_event(struct epoll_event* ev)
   if (ev->events & EPOLLIN)
   {
    if (us->tag != prev_tag) {
+   printf("\n");
    frametimer_update();
-   printf("[%f] %s:\t",frametimer_since((float) 0), us->tag); 
+   printf("[%f] %s:\t",frametimer_since(0), us->tag); 
    prev_tag=us->tag;
    }
    while (count!=-1)
      {
        count = read(us->fd, buf, 8);
-       printf(" 0x%hhx ",buf[i]);
+       for (i=0;i<count;i++){
+	printf(" 0x%hhx",buf[i]);
+       }
+       fflush(stdout);
      }
             
        if ((errno==EAGAIN) || errno==EWOULDBLOCK) {
-       printf(".\n");
        return;
        }else
        {
