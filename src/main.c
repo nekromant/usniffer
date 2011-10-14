@@ -40,7 +40,7 @@ void process_event(struct epoll_event* ev)
      }
             
        if ((errno==EAGAIN) || errno==EWOULDBLOCK) {
-       printf("\n");
+       printf(".\n");
        return;
        }else
        {
@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
    
    if (c)
    {
-     printf("Got event!\n");
+     //printf("Got event!\n");
      process_event(&ev);
    }
  }
