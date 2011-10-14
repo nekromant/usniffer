@@ -37,7 +37,7 @@ void frametimer_update() {
  dt = time_counter - last_frame_time_counter; 
  elapsed+=dt;
 }
-
+int bytes=0;
 void process_event(struct epoll_event* ev)
 {
   struct uart_settings_t* us = ev->data.ptr;
@@ -48,7 +48,8 @@ void process_event(struct epoll_event* ev)
   if (ev->events & EPOLLIN)
   {
    if (us->tag != prev_tag) {
-   printf("\n");
+   printf("[%d bytes]\n", count);
+   count=0;
    frametimer_update();
    printf("[%f\t] %s:\t",frametimer_since(0), us->tag); 
    prev_tag=us->tag;
@@ -58,6 +59,7 @@ void process_event(struct epoll_event* ev)
        count = read(us->fd, buf, 8);
        for (i=0;i<count;i++){
 	printf(" 0x%hhx",buf[i]);
+	bytes++;
        }
        fflush(stdout);
      }
