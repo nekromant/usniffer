@@ -1,7 +1,7 @@
 #ifndef _UART_H
 #define _UART_H
 
-typedef struct uart_settings_t
+struct uart_settings_t
 {
  tcflag_t ifl;
  tcflag_t cfl;
