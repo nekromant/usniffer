@@ -50,7 +50,7 @@ void process_event(struct epoll_event* ev)
    if (us->tag != prev_tag) {
    printf("\n");
    frametimer_update();
-   printf("[%f] %s:\t",frametimer_since(0), us->tag); 
+   printf("[%f\t] %s:\t",frametimer_since(0), us->tag); 
    prev_tag=us->tag;
    }
    while (count!=-1)
