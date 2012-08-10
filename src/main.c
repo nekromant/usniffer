@@ -85,12 +85,17 @@ int main(int argc, char* argv[])
     struct uart_settings_t* us;
     int efd = epoll_create(argc);
     struct epoll_event ev;
+    if ( 0 == getuid() ) {
+	    fprintf(stderr, "BIG FAT WARNING!\n");
+	    fprintf(stderr, "YOU ARE RUNNING AS ROOT!\n");
+	    fprintf(stderr, "THIS IS GENERALLY A BAD PRACTICE!\n");
+	    fprintf(stderr, "CONSIDER SETTING UP UDEV RULES AND RUN AS A USER INSTEAD!\n");
+    }
 
     for (i=1; i<argc; i++) {
         printf("Parsing: %s \n", argv[i]);
         us = str_to_uart_settings(argv[i]);
         us->fd = uart_init(us);
-        fprintf(stderr, "fd is %d\n", us->fd);
         if (us->fd<0) {
             fprintf(stderr, "Failed to open port %s\n", us->port);
             exit(1);
@@ -103,7 +108,7 @@ int main(int argc, char* argv[])
             exit(1);
         }
     }
-//Init the frametimer
+    /* Init the frametimer */
     frametimer_init();
     while (1) {
         int c = epoll_wait(efd, &ev, 1, 0);
